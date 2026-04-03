@@ -57,15 +57,14 @@
 
         <div class="flex-1 overflow-y-auto py-4">
             <ul class="space-y-1">
+                <li><button onclick="navigate('apostila')" id="btn-apostila"
+                        class="nav-btn w-full text-left px-6 py-3 text-sm text-slate-700 hover:bg-slate-200 transition-colors">📖
+                        Apostila Completa</button></li>
                 <li class="px-6 text-xs font-bold text-slate-400 uppercase tracking-widest mb-1 mt-2">Teoria e
                     Construção</li>
                 <li><button onclick="navigate('intro')" id="btn-intro"
                         class="nav-btn w-full text-left px-6 py-3 text-sm text-slate-700 hover:bg-slate-200 transition-colors nav-active">📚
                         Fundamentos</button></li>
-                <li><button onclick="navigate('apostila')" id="btn-apostila"
-                        class="nav-btn w-full text-left px-6 py-3 text-sm text-slate-700 hover:bg-slate-200 transition-colors">📖
-                        Apostila Completa</button></li>
-
                 <li><button onclick="navigate('grammars')" id="btn-grammars"
                         class="nav-btn w-full text-left px-6 py-3 text-sm text-slate-700 hover:bg-slate-200 transition-colors">🔤
                         Gramáticas</button></li>
@@ -99,9 +98,6 @@
                 <li class="mt-4 border-t border-slate-200 pt-2"><button onclick="navigate('quiz')" id="btn-quiz"
                         class="nav-btn w-full text-left px-6 py-3 text-sm font-bold text-sky-700 hover:bg-sky-100 transition-colors">📝
                         Quiz (Avaliação)</button></li>
-                <li><button onclick="navigate('ai')" id="btn-ai"
-                        class="nav-btn w-full text-left px-6 py-3 text-sm font-bold text-purple-700 hover:bg-purple-100 transition-colors">✨
-                        Tutor IA</button></li>
             </ul>
         </div>
     </nav>
@@ -281,206 +277,8 @@
         </section>
 
         <!-- SEÇÃO: APOSTILA (Movida para ser independente) -->
-        <section id="sec-apostila" class="content-section max-w-5xl mx-auto hidden">
-            <div id="apostila-content">
-                <div class="max-w-5xl mx-auto py-8">
-                    <header class="mb-12 border-b border-slate-200 pb-8">
-                        <h1 class="text-4xl font-black text-slate-900 mb-4 tracking-tight">Fundamentos Matemáticos e
-                            Arquitetura de Compiladores</h1>
-                        <div class="flex items-center gap-4 text-slate-500 text-sm">
-                            <span class="bg-slate-100 px-3 py-1 rounded-full font-bold">Documentação Oficial</span>
-                            <span>•</span>
-                            <span>Teoria das Linguagens Formais</span>
-                        </div>
-                    </header>
-
-                    <div class="prose prose-slate max-w-none space-y-16 text-slate-700 leading-relaxed">
-
-                        <!-- INTRODUÇÃO -->
-                        <section>
-                            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                                <span
-                                    class="w-8 h-8 bg-slate-800 text-white rounded-lg flex items-center justify-center text-sm">0</span>
-                                Introdução e Epistemologia
-                            </h2>
-                            <p>A teoria dos autômatos constitui o substrato matemático inegociável sobre o qual a
-                                ciência da computação moderna está alicerçada. Em 1936, ao responder ao
-                                <em>Entscheidungsproblem</em>, Alan Turing formalizou a **Máquina de Turing**,
-                                delimitando as fronteiras entre o que é mecanicamente computável e o que transcende
-                                a capacidade algorítmica.
-                            </p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                                <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
-                                    <h4 class="font-bold text-emerald-800 mb-2 uppercase text-xs tracking-widest">
-                                        Gramática</h4>
-                                    <p class="text-sm text-emerald-700">Dispositivo gerador axiomático: sintetiza as
-                                        cadeias válidas.</p>
-                                </div>
-                                <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
-                                    <h4 class="font-bold text-indigo-800 mb-2 uppercase text-xs tracking-widest">
-                                        Autômato</h4>
-                                    <p class="text-sm text-indigo-700">Dispositivo reconhecedor operacional: consome
-                                        e valida as cadeias.</p>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- CAPÍTULO 1 -->
-                        <section>
-                            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                                <span
-                                    class="w-8 h-8 bg-slate-800 text-white rounded-lg flex items-center justify-center text-sm">1</span>
-                                Sintaxe versus Semântica
-                            </h2>
-                            <div class="space-y-6">
-                                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-                                    <h4 class="font-bold text-slate-800 mb-2">1.1 Sintaxe</h4>
-                                    <p class="text-sm italic mb-4">"Como se escreve?"</p>
-                                    <p class="text-sm">Ocupa-se exclusivamente da disposição espacial e morfologia.
-                                        Ignora o significado. Exemplo: <code>if (x > 0) { }</code> está correto
-                                        sintaticamente em Java.</p>
-                                </div>
-                                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-                                    <h4 class="font-bold text-slate-800 mb-2">1.2 Semântica</h4>
-                                    <p class="text-sm italic mb-4">"O que significa?"</p>
-                                    <p class="text-sm">Estuda o significado intrínseco e os efeitos colaterais.
-                                        Requer contexto. Exemplo: Tentar multiplicar uma <code>String</code> por um
-                                        <code>int</code> causa erro semântico, apesar de a estrutura parecer
-                                        correta.
-                                    </p>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- CAPÍTULO 2 -->
-                        <section>
-                            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                                <span
-                                    class="w-8 h-8 bg-slate-800 text-white rounded-lg flex items-center justify-center text-sm">2</span>
-                                Fundamentos Algébricos
-                            </h2>
-                            <div class="bg-slate-900 text-slate-300 p-8 rounded-3xl font-mono text-sm space-y-4">
-                                <p><span class="text-emerald-400 font-bold">Alfabeto ($\Sigma$):</span> Conjunto
-                                    finito e não vazio de símbolos. <br> Ex: $\Sigma = \{0, 1\}$</p>
-                                <p><span class="text-emerald-400 font-bold">Palavra ($w$):</span> Justaposição
-                                    finita de símbolos. <br> Comprimento: $|w|$</p>
-                                <p><span class="text-emerald-400 font-bold">Fecho de Kleene ($\Sigma^*$):</span>
-                                    Conjunto de todas as combinações possíveis, incluindo a palavra vazia
-                                    $\epsilon$.</p>
-                                <div class="mt-6 pt-4 border-t border-slate-700">
-                                    <p class="text-white">Definição: $L \subseteq \Sigma^*$</p>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- CAPÍTULO 3 -->
-                        <section>
-                            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                                <span
-                                    class="w-8 h-8 bg-slate-800 text-white rounded-lg flex items-center justify-center text-sm">3</span>
-                                Topologia de Autômatos
-                            </h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-3">AFD (Determinístico)</h4>
-                                    <p class="text-sm">Um sistema rígido onde, para cada estado e símbolo lido,
-                                        existe exatamente um caminho possível. É a base da eficiência em hardware.
-                                    </p>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800 mb-3">AFN (Não-Determinístico)</h4>
-                                    <p class="text-sm">Permite múltiplos caminhos simultâneos ou "multiversos". É
-                                        fundamental para modelar regras complexas e Expressões Regulares.</p>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- CAPÍTULO 4 -->
-                        <section>
-                            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                                <span
-                                    class="w-8 h-8 bg-slate-800 text-white rounded-lg flex items-center justify-center text-sm">4</span>
-                                Hierarquia de Chomsky
-                            </h2>
-                            <div class="overflow-hidden rounded-2xl border border-slate-200">
-                                <table class="w-full text-left text-sm">
-                                    <thead class="bg-slate-50 border-b border-slate-200">
-                                        <tr>
-                                            <th class="p-4 font-bold text-slate-700">Tipo</th>
-                                            <th class="p-4 font-bold text-slate-700">Gramática</th>
-                                            <th class="p-4 font-bold text-slate-700">Reconhecedor</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-200">
-                                        <tr>
-                                            <td class="p-4 font-mono">Tipo 0</td>
-                                            <td class="p-4">Irrestrita</td>
-                                            <td class="p-4">Máquina de Turing</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="p-4 font-mono">Tipo 1</td>
-                                            <td class="p-4">Sensível ao Contexto</td>
-                                            <td class="p-4">LBA</td>
-                                        </tr>
-                                        <tr class="bg-purple-50">
-                                            <td class="p-4 font-mono font-bold">Tipo 2</td>
-                                            <td class="p-4">Livre de Contexto</td>
-                                            <td class="p-4">Autômato de Pilha (PDA)</td>
-                                        </tr>
-                                        <tr class="bg-emerald-50">
-                                            <td class="p-4 font-mono font-bold">Tipo 3</td>
-                                            <td class="p-4">Regular</td>
-                                            <td class="p-4">Autômato Finito</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
-
-                        <!-- CAPÍTULO 5 -->
-                        <section class="bg-slate-50 p-8 rounded-3xl border border-slate-200">
-                            <h2 class="text-2xl font-bold text-slate-800 mb-6">Capítulo 5: Arquitetura de
-                                Compiladores</h2>
-                            <div class="space-y-8">
-                                <div class="flex gap-4">
-                                    <div
-                                        class="shrink-0 w-12 h-12 bg-white border border-slate-200 rounded-xl flex items-center justify-center font-bold shadow-sm">
-                                        1</div>
-                                    <div>
-                                        <h4 class="font-bold text-slate-800">Análise Léxica (Scanning)</h4>
-                                        <p class="text-sm">Lê o texto bruto e gera **Tokens**. Usa Autômatos Finitos
-                                            (Tipo 3).</p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4">
-                                    <div
-                                        class="shrink-0 w-12 h-12 bg-white border border-slate-200 rounded-xl flex items-center justify-center font-bold shadow-sm">
-                                        2</div>
-                                    <div>
-                                        <h4 class="font-bold text-slate-800">Análise Sintática (Parsing)</h4>
-                                        <p class="text-sm">Verifica a estrutura e gera a **AST (Árvore de Sintaxe
-                                            Abstrata)**. Usa Autômatos de Pilha (Tipo 2).</p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-4">
-                                    <div
-                                        class="shrink-0 w-12 h-12 bg-white border border-slate-200 rounded-xl flex items-center justify-center font-bold shadow-sm">
-                                        3</div>
-                                    <div>
-                                        <h4 class="font-bold text-slate-800">Análise Semântica</h4>
-                                        <p class="text-sm">Verifica tipos, escopos e consistência lógica usando a
-                                            **Tabela de Símbolos**.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <footer class="pt-12 text-center text-slate-400 text-xs uppercase tracking-widest font-bold">
-                            Fim da Documentação Técnica
-                        </footer>
-                    </div>
-                </div>
-            </div>
+        <section id="sec-apostila" class="content-section hidden">
+            <iframe src="/assets/apostila.pdf"></iframe>
         </section>
 
         <!-- SEÇÃO: GRAMÁTICAS -->
@@ -1154,42 +952,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO: TUTOR IA -->
-        <section id="sec-ai" class="content-section max-w-4xl mx-auto hidden">
-            <header class="mb-8 border-b border-purple-200 pb-4">
-                <div class="flex items-center gap-3"><span class="text-4xl drop-shadow-md">✨</span>
-                    <div>
-                        <h2 class="text-3xl font-bold text-purple-900 mb-1">Tutor IA: Redes Neurais Formais</h2>
-                        <p class="text-purple-700">Um cérebro artificial programado com a bibliografia e ementa da sua
-                            disciplina.</p>
-                    </div>
-                </div>
-            </header>
-            <div class="bg-gradient-to-br from-white to-purple-50 rounded-xl border border-purple-200 shadow-md p-6">
-                <textarea id="ai-query-input" rows="4"
-                    class="w-full px-5 py-4 border border-purple-300 rounded-xl focus:ring-2 focus:ring-purple-500 mb-4 outline-none text-slate-700 shadow-inner"
-                    placeholder="Qual é a sua dúvida existencial computacional?"></textarea>
-                <button id="btn-ask-ai" onclick="askGemini()"
-                    class="w-full md:w-auto md:float-right bg-purple-700 hover:bg-purple-600 text-white px-8 py-3 rounded-xl font-bold transition-transform shadow-lg shadow-purple-900/20 active:scale-95 flex items-center justify-center gap-2">Enviar
-                    Pergunta ao Tutor ✨</button>
-                <div class="clear-both"></div>
-                <div id="ai-response-container"
-                    class="hidden mt-8 bg-white p-6 rounded-xl border border-slate-200 relative min-h-[150px] shadow-sm">
-                    <div id="ai-loading"
-                        class="hidden absolute inset-0 bg-white/90 rounded-xl flex flex-col items-center justify-center z-10">
-                        <div class="animate-spin rounded-full h-10 w-10 border-b-4 border-purple-700 mb-3 drop-shadow">
-                        </div><span
-                            class="text-sm font-bold text-purple-800 animate-pulse uppercase tracking-widest">Sintetizando
-                            a resposta...</span>
-                    </div>
-                    <div
-                        class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">
-                        Resposta Analítica Emitida pelo Tutor:</div>
-                    <div id="ai-response-text"
-                        class="text-slate-700 text-[15px] leading-relaxed ai-response-content font-medium"></div>
-                </div>
-            </div>
-        </section>
 
     </main>
 
