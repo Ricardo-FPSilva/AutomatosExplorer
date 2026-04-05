@@ -1,0 +1,99 @@
+<!-- SEÇÃO: LEMA DO BOMBEAMENTO -->
+        <section id="sec-pumping" class="content-section max-w-5xl mx-auto hidden">
+            <header class="mb-8">
+                <div class="flex items-center gap-3 mb-2"><span class="text-4xl">🎮</span>
+                    <h2 class="text-3xl font-bold text-orange-800">O Duelo: Lema do Bombeamento</h2>
+                </div>
+                <div class="bg-orange-50 border-l-4 border-orange-500 p-5 rounded-r-lg mt-4 mb-6 shadow-sm">
+                    <h3 class="font-bold text-orange-900 flex items-center gap-2 mb-2">📖 Provando por Contradição que a
+                        Máquina Não Sabe Contar</h3>
+                    <p class="text-sm text-orange-800 leading-relaxed mb-2">Autômatos Finitos não têm memória infinita.
+                        O <b>Lema do Bombeamento</b> é um jogo matemático onde você prova isso. A regra universal diz:
+                        se uma linguagem for regular, toda palavra grande o suficiente precisará passar por um
+                        <b>loop</b> em algum momento.
+                    </p>
+                </div>
+            </header>
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-md">
+                <div class="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-16 h-16 rounded-full bg-slate-200 border-4 border-slate-300 flex items-center justify-center text-3xl shadow-inner">
+                            🤖</div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-xl">O Computador Arrogante</h3>
+                            <p class="text-sm text-slate-500">"Eu resolvo qualquer linguagem!"</p>
+                        </div>
+                    </div>
+                    <div class="text-3xl font-black text-slate-300 italic">VS</div>
+                    <div class="flex items-center gap-4 text-right">
+                        <div>
+                            <h3 class="font-bold text-orange-600 text-xl">Você (O Matemático)</h3>
+                            <p class="text-sm text-orange-400">"Vou quebrar seu autômato."</p>
+                        </div>
+                        <div
+                            class="w-16 h-16 rounded-full bg-orange-100 border-4 border-orange-300 flex items-center justify-center text-3xl shadow-inner">
+                            🧑‍💻</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800 rounded-xl p-6 text-slate-200 shadow-inner mb-6 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-orange-500"></div>
+                    <div class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">O Campo de Batalha
+                    </div>
+                    <p class="text-lg mb-2">Linguagem Padrão: <code
+                            class="bg-slate-900 text-orange-400 px-3 py-1 rounded border border-slate-700 font-bold font-mono shadow-sm">L = { 0ⁿ 1ⁿ | n &ge; 0 }</code>
+                    </p>
+                    <p class="text-sm text-slate-400">O computador afirma categoricamente que esta linguagem é Regular e
+                        pode ser resolvida com um AFD cujo limite máximo de estados seja <b>p = 4</b>.</p>
+                </div>
+                <div id="pump-step-1"
+                    class="mb-6 bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm transition-all duration-500">
+                    <h4 class="font-bold text-slate-800 mb-2">Turno 1: Sua vez de escolher a Palavra (w)</h4>
+                    <p class="text-sm text-slate-600 mb-4">Escolha uma sequência autêntica da linguagem. O comprimento
+                        de w deve perfazer no mínimo o limite do oponente (p=4).</p>
+                    <div class="flex gap-4"><input type="text" id="pump-word-input"
+                            class="flex-1 bg-white border border-slate-300 rounded-lg px-4 py-3 font-mono text-lg focus:ring-2 focus:ring-orange-500 outline-none transition-colors shadow-inner"
+                            placeholder="Ex: 00001111"><button onclick="pumpSubmitWord()"
+                            class="bg-orange-600 hover:bg-orange-500 text-white px-8 py-3 rounded-lg font-bold transition-transform active:scale-95 shadow-md">Jogar
+                            Palavra w</button></div>
+                    <div id="pump-word-error" class="text-rose-500 text-sm mt-3 hidden font-bold"></div>
+                </div>
+                <div id="pump-step-2"
+                    class="hidden mb-6 bg-indigo-50 p-6 rounded-xl border border-indigo-200 shadow-sm transition-all duration-500">
+                    <div class="flex items-center gap-3 mb-4"><span class="text-2xl">🤖</span>
+                        <h4 class="font-bold text-indigo-900">Turno 2: O Computador divide a palavra</h4>
+                    </div>
+                    <p class="text-sm text-indigo-800 mb-4 leading-relaxed">A matemática obriga o computador a dividir
+                        sua palavra em 3 blocos: <b>x, y, z</b>.<br>Como a regra diz que o início $|xy| \le p$, o bloco
+                        de repetição <b>"y"</b> encalhou numa área feita inteiramente de zeros!</p>
+                    <div id="pump-division-visual" class="flex gap-2 justify-center font-mono text-3xl mb-3 mt-6"></div>
+                    <div class="flex justify-center gap-2 text-xs font-bold text-indigo-400 uppercase tracking-widest">
+                        <div class="w-[60px] text-center">x</div>
+                        <div class="w-[120px] text-center">y (O Loop)</div>
+                        <div class="flex-1 text-center">z</div>
+                    </div>
+                </div>
+                <div id="pump-step-3"
+                    class="hidden mb-6 bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm transition-all duration-500">
+                    <h4 class="font-bold text-slate-800 mb-2">Turno 3: Aplicação de Força (O Bombeamento)</h4>
+                    <p class="text-sm text-slate-600 mb-4">Escolha o índice inflacionário <b>k</b>. Vamos forçar a
+                        máquina a multiplicar e repetir exaustivamente o loop "y". Se a linguagem fosse regular de
+                        verdade, a nova palavra ainda deveria obedecer à lei $0^n 1^n$.</p>
+                    <div class="flex gap-4 items-center">
+                        <label class="font-bold text-slate-700 uppercase text-xs tracking-widest">Multiplicador k
+                            =</label>
+                        <input type="number" id="pump-k-input" min="0" max="10" value="2"
+                            class="w-24 bg-white border border-slate-300 rounded-lg px-4 py-2 font-mono text-2xl focus:ring-2 focus:ring-orange-500 outline-none text-center shadow-inner text-orange-600 font-bold border-2">
+                        <button onclick="pumpApplyK()"
+                            class="bg-rose-600 hover:bg-rose-500 text-white px-8 py-3 rounded-xl font-bold transition-transform active:scale-95 shadow-md flex items-center gap-2 text-lg">💣
+                            Detonar Memória da Máquina</button>
+                    </div>
+                </div>
+                <div id="pump-result"
+                    class="hidden p-6 rounded-xl border transition-all duration-500 mt-6 shadow-inner text-center">
+                </div>
+                <div class="text-right mt-4"><button onclick="pumpReset()"
+                        class="text-sm text-slate-400 hover:text-slate-600 underline font-medium">Resetar Duelo</button>
+                </div>
+            </div>
+        </section>

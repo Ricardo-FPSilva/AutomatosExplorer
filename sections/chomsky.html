@@ -1,0 +1,50 @@
+<!-- SEÇÃO: CHOMSKY -->
+        <section id="sec-chomsky" class="content-section max-w-5xl mx-auto hidden">
+            <header class="mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 mb-2">A Hierarquia de Chomsky</h2>
+                <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg mt-4 mb-6 shadow-sm">
+                    <h3 class="font-bold text-emerald-800 flex items-center gap-2 mb-2">📖 A Classificação Universal
+                    </h3>
+                    <p class="text-sm text-emerald-900 leading-relaxed font-medium">
+                        <b>A Regra de Ouro:</b> Quanto maior o "Tipo" da gramática (0 a 3), mais restritas e simples são
+                        as suas regras de derivação. Em troca, exigem máquinas mais eficientes e leves.
+                    </p>
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div
+                    class="lg:col-span-5 flex flex-col items-center justify-center bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative">
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mb-6 text-center">Clique nas
+                        camadas</p>
+                    <div onclick="showChomsky(0, event)" id="chomsky-layer-0"
+                        class="cursor-pointer w-full max-w-md bg-slate-100 border-2 border-slate-300 p-4 pb-8 rounded-2xl hover:bg-slate-200 transition-all relative group">
+                        <span class="text-slate-600 font-bold text-xs uppercase absolute top-3 left-4">Tipo 0
+                            (Turing)</span>
+                        <div onclick="showChomsky(1, event)" id="chomsky-layer-1"
+                            class="cursor-pointer mt-8 bg-blue-50 border-2 border-blue-300 p-4 pb-8 rounded-2xl hover:bg-blue-100 transition-all relative group">
+                            <span class="text-blue-700 font-bold text-xs uppercase absolute top-3 left-4">Tipo 1
+                                (Sensível Contexto)</span>
+                            <div onclick="showChomsky(2, event)" id="chomsky-layer-2"
+                                class="cursor-pointer mt-8 bg-purple-50 border-2 border-purple-300 p-4 pb-8 rounded-2xl hover:bg-purple-100 transition-all relative group">
+                                <span class="text-purple-700 font-bold text-xs uppercase absolute top-3 left-4">Tipo 2
+                                    (Livre Contexto)</span>
+                                <div onclick="showChomsky(3, event)" id="chomsky-layer-3"
+                                    class="cursor-pointer mt-8 bg-emerald-50 border-2 border-emerald-400 p-8 rounded-2xl hover:bg-emerald-100 transition-all relative group flex items-center justify-center">
+                                    <span class="text-emerald-800 font-bold text-sm uppercase text-center">Tipo
+                                        3<br>Regulares</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 flex flex-col">
+                    <div id="chomsky-info-panel"
+                        class="bg-white p-8 rounded-2xl border border-slate-200 shadow-md min-h-[450px] flex flex-col justify-center border-t-8 border-t-slate-400 transition-colors duration-300">
+                        <div class="text-center text-slate-400 pb-10"><i class="text-5xl block mb-4">👈</i>
+                            <h3 class="text-xl font-bold text-slate-700">Selecione uma Camada</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

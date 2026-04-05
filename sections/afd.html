@@ -1,0 +1,91 @@
+<!-- SEÇÃO: AFD -->
+        <section id="sec-afd" class="content-section max-w-5xl mx-auto hidden">
+            <header class="mb-8">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="text-3xl">⚙️</span>
+                    <h2 class="text-3xl font-bold text-emerald-800">Autômato Finito Determinístico (AFD)</h2>
+                </div>
+                <div class="bg-white border-l-4 border-emerald-500 shadow-sm p-5 rounded-r-lg mt-4 mb-8">
+                    <h3 class="font-bold text-emerald-900 flex items-center gap-2 mb-2">📖 A Máquina Previsível</h3>
+                    <p class="text-sm text-slate-700 leading-relaxed mb-3">
+                        O AFD é como um <b>Trem sobre Trilhos</b>. Não tem memória interna. <b>Para cada estado e para
+                            cada letra que o sensor processa, só existe uma única via possível para seguir.</b> O trem
+                        nunca tem dúvidas.
+                    </p>
+                </div>
+            </header>
+
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm">
+                <div class="mb-8 bg-slate-50 border border-slate-200 rounded-xl p-4 relative">
+                    <div
+                        class="absolute top-4 right-4 bg-white border border-slate-200 px-3 py-1 text-xs text-slate-500 rounded-full shadow-sm flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-emerald-500 shadow-sm"></div> Estado Ativo (O Trem)
+                    </div>
+                    <canvas id="afd-canvas" class="graph-canvas border-none shadow-none h-[220px]" width="800"
+                        height="220"></canvas>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-700 mb-4 border-b border-slate-100 pb-2">Controle da
+                            Leitura</h3>
+                        <div class="flex gap-2 mb-6">
+                            <input type="text" id="dfa-input"
+                                class="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 font-mono text-lg focus:ring-2 focus:ring-emerald-500 outline-none shadow-inner"
+                                value="01100101">
+                            <button onclick="dfaLoad()"
+                                class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg font-bold transition-colors shadow-sm">Carregar</button>
+                        </div>
+                        <div class="mb-6">
+                            <div id="dfa-tape-container"
+                                class="flex gap-1 overflow-x-auto p-3 bg-slate-100 rounded-xl min-h-[64px] items-center border border-slate-200 shadow-inner">
+                            </div>
+                        </div>
+                        <button id="btn-dfa-step" onclick="dfaStep()"
+                            class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-emerald-900/20 transition-transform active:scale-95 disabled:opacity-50">Processar
+                            Letra e Avançar &rarr;</button>
+                        <div id="dfa-result" class="text-center font-bold text-xl mt-6 h-8"></div>
+                    </div>
+                    <div class="bg-slate-800 text-slate-200 rounded-xl p-6 shadow-inner flex flex-col">
+                        <div class="text-xs text-emerald-400 font-bold uppercase tracking-widest mb-2">A Matemática: A
+                            Função &delta;(q, a)</div>
+                        <div class="bg-slate-900 border border-slate-700 rounded-lg p-4 flex-1 shadow-sm">
+                            <table class="w-full text-center text-sm">
+                                <thead>
+                                    <tr class="text-slate-400 border-b border-slate-700">
+                                        <th class="pb-2">Estado Atual</th>
+                                        <th class="pb-2">Se ler '0'</th>
+                                        <th class="pb-2">Se ler '1'</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="font-mono">
+                                    <tr id="row-dfa-q0" class="transition-colors">
+                                        <td class="py-2">&rarr; q0</td>
+                                        <td>q0</td>
+                                        <td>q1</td>
+                                    </tr>
+                                    <tr id="row-dfa-q1" class="transition-colors">
+                                        <td class="py-2">q1</td>
+                                        <td>q2</td>
+                                        <td>q1</td>
+                                    </tr>
+                                    <tr id="row-dfa-q2" class="transition-colors">
+                                        <td class="py-2">q2</td>
+                                        <td class="text-amber-400">q0</td>
+                                        <td>q3</td>
+                                    </tr>
+                                    <tr id="row-dfa-q3" class="transition-colors">
+                                        <td class="py-2">* q3</td>
+                                        <td>q3</td>
+                                        <td>q3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-4 bg-slate-900 p-4 rounded-lg border border-slate-700">
+                            <span class="text-xs text-slate-500 uppercase font-bold block mb-1">Status:</span>
+                            <span id="dfa-step-info" class="font-mono text-sm text-white">Aguardando início...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

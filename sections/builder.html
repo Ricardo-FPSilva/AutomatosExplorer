@@ -1,0 +1,103 @@
+<!-- SEÇÃO: CONSTRUTOR -->
+        <section id="sec-builder" class="content-section max-w-6xl mx-auto hidden">
+            <header class="mb-8">
+                <div class="flex items-center gap-3 mb-2"><span class="text-3xl">🛠️</span>
+                    <h2 class="text-3xl font-bold text-amber-800">Construtor Interativo de Autômatos</h2>
+                </div>
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-lg mt-4 mb-6 shadow-sm">
+                    <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">📖 Desenhe e Analise seu Próprio
+                        Sistema</h3>
+                    <p class="text-sm text-amber-900 leading-relaxed">Você é o Arquiteto. Configure a máquina, preencha
+                        a tabela de transição e valide a simulação visual em tempo real testando as suas próprias
+                        cadeias de texto.</p>
+                </div>
+            </header>
+            <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+                <div class="xl:col-span-5 flex flex-col gap-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                        <h3
+                            class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">
+                            1. Definir Arquitetura Base</h3>
+                        <div class="space-y-4">
+                            <div><label class="block text-sm font-bold text-slate-700 mb-1">Qual é a Lei de
+                                    Processamento?</label><select id="bld-type" onchange="buildTableUI()"
+                                    class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 outline-none font-medium cursor-pointer">
+                                    <option value="afd">AFD (Determinístico / Restrito)</option>
+                                    <option value="afn">AFN (Não-Determinístico / Multiverso)</option>
+                                </select></div>
+                            <div class="flex gap-4">
+                                <div class="flex-1"><label class="block text-sm font-bold text-slate-700 mb-1">Nº
+                                        Estados</label><select id="bld-states" onchange="buildTableUI()"
+                                        class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-amber-500 outline-none font-medium cursor-pointer">
+                                        <option value="2">2 (q0, q1)</option>
+                                        <option value="3" selected>3 (q0, q1, q2)</option>
+                                        <option value="4">4 (q0 a q3)</option>
+                                        <option value="5">5 (q0 a q4)</option>
+                                    </select></div>
+                                <div class="flex-1"><label class="block text-sm font-bold text-slate-700 mb-1">Alfabeto
+                                        (Σ)</label><input type="text" id="bld-alphabet" value="a,b"
+                                        oninput="buildTableUI()"
+                                        class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 font-mono font-bold focus:ring-2 focus:ring-amber-500 outline-none transition-colors shadow-inner"
+                                        placeholder="Ex: a,b"></div>
+                            </div>
+                            <div><label class="block text-sm font-bold text-slate-700 mb-1">Assinalar Estados
+                                    Finais</label>
+                                <div id="bld-final-states" class="flex flex-wrap gap-2 mt-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-sm text-slate-200">
+                        <div class="flex justify-between items-center mb-4 border-b border-slate-600 pb-2">
+                            <h3 class="text-sm font-bold text-amber-400 uppercase tracking-widest">2. Matriz Operacional
+                                (δ)</h3>
+                        </div>
+                        <p id="bld-table-tip"
+                            class="text-xs text-slate-400 mb-4 bg-slate-900 p-2 rounded border border-slate-700">Dica:
+                            No AFD digite apenas um estado exato (ex: q1).</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-center text-sm" id="bld-table"></table>
+                        </div>
+                    </div>
+                </div>
+                <div class="xl:col-span-7 flex flex-col gap-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest">Renderização
+                                Topológica em Tela</h3>
+                        </div><canvas id="bld-canvas"
+                            class="graph-canvas border-none shadow-none h-[280px] bg-slate-50 rounded-xl" width="800"
+                            height="280"></canvas>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                        <h3
+                            class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-100 pb-2">
+                            3. Bancada de Testes de Execução</h3>
+                        <div class="flex gap-2 mb-6"><input type="text" id="bld-sim-input"
+                                class="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-4 py-3 font-mono text-lg focus:ring-2 focus:ring-amber-500 outline-none shadow-inner"
+                                placeholder="Insira a cadeia para análise..."><button onclick="bldSimLoad()"
+                                class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg font-bold transition-colors shadow-sm">Injetar
+                                na Fita</button></div>
+                        <div class="mb-6">
+                            <div id="bld-tape-container"
+                                class="flex gap-1 overflow-x-auto p-3 bg-slate-100 rounded-xl min-h-[64px] items-center border border-slate-200 shadow-inner">
+                                <span class="text-slate-400 italic text-sm">Aguardando palavra na fita.</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 items-center">
+                            <button id="btn-bld-step" onclick="bldSimStep()" disabled
+                                class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-700 py-4 rounded-xl font-bold transition-colors disabled:opacity-50 shadow-sm">1
+                                Passo Lógico &rarr;</button>
+                            <button id="btn-bld-play" onclick="bldSimPlay()" disabled
+                                class="flex-[2] bg-amber-500 hover:bg-amber-400 text-slate-900 py-4 rounded-xl font-bold shadow-lg shadow-amber-900/20 transition-transform active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2">▶️
+                                Play Automático</button>
+                            <button id="btn-bld-pause" onclick="bldSimPause()"
+                                class="hidden flex-[2] bg-rose-500 hover:bg-rose-400 text-white py-4 rounded-xl font-bold shadow-lg shadow-rose-900/20 transition-transform active:scale-95 flex items-center justify-center gap-2">⏸️
+                                Pausar</button>
+                            <div class="bg-slate-800 text-amber-400 px-4 py-3 rounded-xl font-mono text-lg font-bold min-w-[100px] text-center shadow-inner"
+                                id="bld-status-badge">-</div>
+                        </div>
+                        <div id="bld-result" class="text-center font-bold text-xl mt-6 min-h-[32px]"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
