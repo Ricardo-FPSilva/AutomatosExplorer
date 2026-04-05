@@ -128,7 +128,7 @@
     <script src="js/pumping.js"></script>
     <script src="js/quiz.js"></script>
     <script src="js/main.js"></script>
-
+    <script src="js/chomsky.js"></script>
 
     <script>
         // Carrega cada seção HTML de forma assíncrona
@@ -144,6 +144,7 @@
                     console.error('Erro ao carregar seção:', url, e);
                 }
             }
+            if (typeof initChomsky === 'function') initChomsky();
         }
         loadSections();
     </script>

@@ -1,50 +1,266 @@
 <!-- SEÇÃO: CHOMSKY -->
-        <section id="sec-chomsky" class="content-section max-w-5xl mx-auto hidden">
-            <header class="mb-8">
-                <h2 class="text-3xl font-bold text-slate-800 mb-2">A Hierarquia de Chomsky</h2>
-                <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg mt-4 mb-6 shadow-sm">
-                    <h3 class="font-bold text-emerald-800 flex items-center gap-2 mb-2">📖 A Classificação Universal
-                    </h3>
-                    <p class="text-sm text-emerald-900 leading-relaxed font-medium">
-                        <b>A Regra de Ouro:</b> Quanto maior o "Tipo" da gramática (0 a 3), mais restritas e simples são
-                        as suas regras de derivação. Em troca, exigem máquinas mais eficientes e leves.
-                    </p>
-                </div>
-            </header>
+<section id="sec-chomsky" class="content-section max-w-5xl mx-auto hidden">
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <div
-                    class="lg:col-span-5 flex flex-col items-center justify-center bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative">
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mb-6 text-center">Clique nas
-                        camadas</p>
-                    <div onclick="showChomsky(0, event)" id="chomsky-layer-0"
-                        class="cursor-pointer w-full max-w-md bg-slate-100 border-2 border-slate-300 p-4 pb-8 rounded-2xl hover:bg-slate-200 transition-all relative group">
-                        <span class="text-slate-600 font-bold text-xs uppercase absolute top-3 left-4">Tipo 0
-                            (Turing)</span>
-                        <div onclick="showChomsky(1, event)" id="chomsky-layer-1"
-                            class="cursor-pointer mt-8 bg-blue-50 border-2 border-blue-300 p-4 pb-8 rounded-2xl hover:bg-blue-100 transition-all relative group">
-                            <span class="text-blue-700 font-bold text-xs uppercase absolute top-3 left-4">Tipo 1
-                                (Sensível Contexto)</span>
-                            <div onclick="showChomsky(2, event)" id="chomsky-layer-2"
-                                class="cursor-pointer mt-8 bg-purple-50 border-2 border-purple-300 p-4 pb-8 rounded-2xl hover:bg-purple-100 transition-all relative group">
-                                <span class="text-purple-700 font-bold text-xs uppercase absolute top-3 left-4">Tipo 2
-                                    (Livre Contexto)</span>
-                                <div onclick="showChomsky(3, event)" id="chomsky-layer-3"
-                                    class="cursor-pointer mt-8 bg-emerald-50 border-2 border-emerald-400 p-8 rounded-2xl hover:bg-emerald-100 transition-all relative group flex items-center justify-center">
-                                    <span class="text-emerald-800 font-bold text-sm uppercase text-center">Tipo
-                                        3<br>Regulares</span>
-                                </div>
-                            </div>
+    <!-- HEADER -->
+    <header class="mb-8">
+        <div class="flex items-center gap-3 mb-2">
+            <span class="text-3xl">🏛️</span>
+            <h2 class="text-3xl font-bold text-slate-800">Hierarquia de Chomsky</h2>
+        </div>
+        <p class="text-slate-500 text-sm mt-1 ml-11">Classificação universal das gramáticas formais e suas máquinas reconhecedoras</p>
+
+        <div class="bg-emerald-50 border-l-4 border-emerald-500 p-5 rounded-r-lg mt-5 shadow-sm">
+            <h3 class="font-bold text-emerald-800 flex items-center gap-2 mb-1">📖 A Regra de Ouro</h3>
+            <p class="text-sm text-emerald-900 leading-relaxed">
+                Quanto maior o número do Tipo (Tipo 3 → Tipo 0), mais <strong>irrestrita</strong> é a gramática
+                e mais <strong>poderosa</strong> é a máquina necessária para reconhecê-la —
+                em troca, perde-se eficiência computacional.
+            </p>
+        </div>
+    </header>
+
+    <!-- BLOCO 1: PIRÂMIDE + TABELA -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm mb-6 hover-card">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-5 pb-2 border-b border-slate-100">
+            Clique numa camada para explorar
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+            <!-- Pirâmide -->
+            <div>
+                <div id="pyramid" class="flex flex-col gap-2 select-none">
+                    <div class="layer-btn l0" id="btn0" onclick="showChomsky(0)">
+                        <div class="layer-icon">∞</div>
+                        <div class="layer-text">
+                            <span class="layer-name">Tipo 0 — Irrestritas</span>
+                            <span class="layer-hint">Máquina de Turing • mais poderoso</span>
+                        </div>
+                    </div>
+                    <div class="layer-btn l1" id="btn1" onclick="showChomsky(1)">
+                        <div class="layer-icon">≤</div>
+                        <div class="layer-text">
+                            <span class="layer-name">Tipo 1 — Sensíveis ao Contexto</span>
+                            <span class="layer-hint">Autômato Linearmente Limitado</span>
+                        </div>
+                    </div>
+                    <div class="layer-btn l2" id="btn2" onclick="showChomsky(2)">
+                        <div class="layer-icon">A</div>
+                        <div class="layer-text">
+                            <span class="layer-name">Tipo 2 — Livres de Contexto</span>
+                            <span class="layer-hint">Autômato de Pilha (PDA)</span>
+                        </div>
+                    </div>
+                    <div class="layer-btn l3" id="btn3" onclick="showChomsky(3)">
+                        <div class="layer-icon">▶</div>
+                        <div class="layer-text">
+                            <span class="layer-name">Tipo 3 — Regulares</span>
+                            <span class="layer-hint">AFD / AFN • mais restrito</span>
                         </div>
                     </div>
                 </div>
-                <div class="lg:col-span-7 flex flex-col">
-                    <div id="chomsky-info-panel"
-                        class="bg-white p-8 rounded-2xl border border-slate-200 shadow-md min-h-[450px] flex flex-col justify-center border-t-8 border-t-slate-400 transition-colors duration-300">
-                        <div class="text-center text-slate-400 pb-10"><i class="text-5xl block mb-4">👈</i>
-                            <h3 class="text-xl font-bold text-slate-700">Selecione uma Camada</h3>
-                        </div>
+
+                <!-- Relação de inclusão -->
+                <div class="mt-5 pt-4 border-t border-slate-100">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Relação de Inclusão</p>
+                    <div class="flex flex-wrap items-center gap-1.5 text-xs font-mono">
+                        <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">T3</span>
+                        <span class="text-slate-300 font-bold">⊂</span>
+                        <span class="px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 font-bold">T2</span>
+                        <span class="text-slate-300 font-bold">⊂</span>
+                        <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 font-bold">T1</span>
+                        <span class="text-slate-300 font-bold">⊂</span>
+                        <span class="px-2 py-0.5 rounded-full bg-slate-200 text-slate-700 font-bold">T0</span>
+                        <span class="text-slate-300 font-bold">⊂</span>
+                        <span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-400 font-bold">∄ solução</span>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <!-- Tabela comparativa -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Resumo Comparativo</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-200">
+                                <th class="text-left pb-2 pr-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Tipo</th>
+                                <th class="text-left pb-2 pr-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Gramática</th>
+                                <th class="text-left pb-2 pr-3 text-xs font-bold text-slate-400 uppercase tracking-wider">Máquina</th>
+                                <th class="text-left pb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">Decidível?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-slate-100 hover:bg-white transition-colors cursor-pointer" onclick="showChomsky(0)">
+                                <td class="py-2.5 pr-3"><span class="px-1.5 py-0.5 rounded bg-slate-200 text-slate-700 font-mono font-bold text-xs">0</span></td>
+                                <td class="py-2.5 pr-3 text-slate-600 font-medium">Irrestrita</td>
+                                <td class="py-2.5 pr-3 font-mono text-xs text-slate-500">Turing</td>
+                                <td class="py-2.5"><span class="text-rose-500 font-bold text-xs">Semi</span></td>
+                            </tr>
+                            <tr class="border-b border-slate-100 hover:bg-white transition-colors cursor-pointer" onclick="showChomsky(1)">
+                                <td class="py-2.5 pr-3"><span class="px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 font-mono font-bold text-xs">1</span></td>
+                                <td class="py-2.5 pr-3 text-slate-600 font-medium">Sensível ao Ctx.</td>
+                                <td class="py-2.5 pr-3 font-mono text-xs text-slate-500">LBA</td>
+                                <td class="py-2.5"><span class="text-emerald-600 font-bold text-xs">Sim</span></td>
+                            </tr>
+                            <tr class="border-b border-slate-100 hover:bg-white transition-colors cursor-pointer" onclick="showChomsky(2)">
+                                <td class="py-2.5 pr-3"><span class="px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 font-mono font-bold text-xs">2</span></td>
+                                <td class="py-2.5 pr-3 text-slate-600 font-medium">Livre de Contexto</td>
+                                <td class="py-2.5 pr-3 font-mono text-xs text-slate-500">PDA</td>
+                                <td class="py-2.5"><span class="text-emerald-600 font-bold text-xs">Sim</span></td>
+                            </tr>
+                            <tr class="hover:bg-white transition-colors cursor-pointer" onclick="showChomsky(3)">
+                                <td class="py-2.5 pr-3"><span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 font-mono font-bold text-xs">3</span></td>
+                                <td class="py-2.5 pr-3 text-slate-600 font-medium">Regular</td>
+                                <td class="py-2.5 pr-3 font-mono text-xs text-slate-500">AFD/AFN</td>
+                                <td class="py-2.5"><span class="text-emerald-600 font-bold text-xs">Sim</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                    💡 As linhas da tabela também são clicáveis.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOCO 2: PAINEL DE DETALHES -->
+    <div id="chomsky-panel" class="bg-white border border-slate-200 rounded-2xl shadow-sm mb-6 overflow-hidden">
+
+        <!-- Estado vazio -->
+        <div id="chomsky-empty" class="text-center py-16 text-slate-400">
+            <div class="text-5xl mb-3">☝️</div>
+            <p class="text-sm font-medium text-slate-500">Selecione uma camada da pirâmide para ver os detalhes</p>
+        </div>
+
+        <!-- Conteúdo preenchido via JS -->
+        <div id="chomsky-content" class="hidden">
+
+            <!-- Cabeçalho do painel com cor dinâmica -->
+            <div id="chomsky-panel-header" class="px-6 md:px-8 py-5 border-b border-slate-100 flex items-center gap-3">
+                <span id="chomsky-badge" class="px-2.5 py-1 rounded-lg text-xs font-bold"></span>
+                <h3 id="chomsky-title" class="text-lg font-bold text-slate-700"></h3>
+            </div>
+
+            <div class="p-6 md:p-8">
+                <!-- Restrição principal -->
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-6">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Restrição Principal</p>
+                    <p id="chomsky-restricao" class="text-sm text-slate-700 leading-relaxed font-medium"></p>
+                </div>
+
+                <!-- Grid: produções + máquina -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Forma das Produções</h4>
+                        <div id="chomsky-forma" class="code-block mb-3"></div>
+                        <div id="chomsky-regras" class="space-y-2"></div>
+                    </div>
+                    <div class="bg-slate-800 rounded-xl p-5 shadow-inner">
+                        <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-3">⚙️ Máquina Reconhecedora</h4>
+                        <div id="chomsky-maquina" class="font-bold text-white mb-3 text-sm"></div>
+                        <div id="chomsky-limites" class="text-xs text-slate-300 leading-relaxed"></div>
+                    </div>
+                </div>
+
+                <!-- Linguagens -->
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Exemplos de Linguagens</h4>
+                <div id="chomsky-linguagens" class="space-y-2 mb-6"></div>
+
+                <!-- Aceitas / Rejeitadas -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-5">
+                        <h4 class="text-xs font-bold text-emerald-700 uppercase tracking-widest mb-3">✓ Strings Aceitas</h4>
+                        <div id="chomsky-aceita" class="space-y-1"></div>
+                    </div>
+                    <div class="bg-rose-50 border border-rose-200 rounded-xl p-5">
+                        <h4 class="text-xs font-bold text-rose-700 uppercase tracking-widest mb-3">✗ Strings Rejeitadas</h4>
+                        <div id="chomsky-rejeita" class="space-y-1"></div>
+                    </div>
+                </div>
+
+                <!-- Dica -->
+                <div class="bg-amber-50 border-l-4 border-amber-400 rounded-r-xl p-4">
+                    <p id="chomsky-dica" class="text-sm text-amber-900 leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOCO 3: ABAS DE COMPARAÇÃO -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm hover-card">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-5 pb-2 border-b border-slate-100">
+            Compare Exemplos de Linguagens
+        </h3>
+
+        <div id="tabrow" class="flex gap-2 mb-6 flex-wrap">
+            <button class="tab-btn on" onclick="switchChomskyTab(0)">Tipo 3 — Regular</button>
+            <button class="tab-btn" onclick="switchChomskyTab(1)">Tipo 2 — Livre de Contexto</button>
+            <button class="tab-btn" onclick="switchChomskyTab(2)">Tipo 1 — Sensível ao Contexto</button>
+            <button class="tab-btn" onclick="switchChomskyTab(3)">Tipo 0 — Irrestrita</button>
+        </div>
+
+        <div id="tab-content" class="bg-slate-50 border border-slate-200 rounded-xl p-5"></div>
+    </div>
+
+</section>
+
+<style>
+    /* ── Pirâmide ─────────────────────────────────── */
+    .layer-btn {
+        border-radius: 0.75rem;
+        padding: 0.7rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: filter 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+    }
+    .layer-btn:hover { filter: brightness(0.96); transform: translateX(3px); }
+    .layer-btn.active { border-color: currentColor; box-shadow: 0 0 0 1px currentColor; }
+
+    .layer-btn .layer-icon {
+        width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700;
+    }
+    .layer-btn .layer-text { display: flex; flex-direction: column; }
+    .layer-btn .layer-name  { font-size: 13px; font-weight: 700; }
+    .layer-btn .layer-hint  { font-size: 11px; opacity: 0.65; margin-top: 1px; }
+
+    .l0 { background: #F1EFE8; color: #2C2C2A; } .l0 .layer-icon { background: #D3D1C7; }
+    .l1 { background: #E6F1FB; color: #042C53; } .l1 .layer-icon { background: #B5D4F4; }
+    .l2 { background: #EEEDFE; color: #26215C; } .l2 .layer-icon { background: #CECBF6; }
+    .l3 { background: #EAF3DE; color: #173404; } .l3 .layer-icon { background: #C0DD97; }
+
+    /* ── Tab buttons ──────────────────────────────── */
+    .tab-btn {
+        padding: 6px 14px; font-size: 12px; font-weight: 600;
+        border-radius: 0.5rem; border: 1px solid #e2e8f0;
+        background: transparent; color: #64748b; cursor: pointer;
+        transition: background 0.12s, color 0.12s, border-color 0.12s;
+    }
+    .tab-btn:hover { background: #f8fafc; color: #334155; border-color: #94a3b8; }
+    .tab-btn.on { background: #f1f5f9; color: #0f172a; border-color: #cbd5e1; font-weight: 700; }
+
+    /* ── Code block ───────────────────────────────── */
+    .code-block {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 13px;
+        background: #0f172a;
+        color: #e2e8f0;
+        border-radius: 8px;
+        padding: 12px 14px;
+        white-space: pre-wrap;
+        word-break: break-all;
+        line-height: 1.65;
+        border: 1px solid #1e293b;
+    }
+
+    /* ── Strings aceitas/rejeitadas ───────────────── */
+    .str-accept { font-family: monospace; font-size: 13px; color: #065f46; padding: 2px 0; }
+    .str-accept::before { content: "✓ "; font-weight: 700; color: #10b981; }
+    .str-reject { font-family: monospace; font-size: 13px; color: #991b1b; padding: 2px 0; }
+    .str-reject::before { content: "✗ "; font-weight: 700; color: #ef4444; }
+</style>
